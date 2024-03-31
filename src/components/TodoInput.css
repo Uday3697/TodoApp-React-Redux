@@ -20,12 +20,14 @@
   .leftside{
     display: flex;
     flex-direction: column;
-    min-width: 300px;
+    min-width: 350px;
     width: 50vw;
   }
 
   @media (max-width: 768px) {
     .home-con {
-      flex-direction: column; /* Change to column layout on mobile devices */
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
   }
