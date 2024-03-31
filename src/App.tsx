@@ -2,11 +2,7 @@ import React, { useState, useEffect } from "react";
 import TodoInput from "./components/TodoInput";
 import { LinearGradient } from "react-text-gradients";
 import { useAppSelector } from "./store/types";
-import "./App.css"
-interface AlertState {
-  // Define the structure of AlertState
-  message: string;
-}
+import "./App.css";
 
 const App: React.FC = () => {
   const alertMsgs = useAppSelector((state) => state.alert);
@@ -25,14 +21,14 @@ const App: React.FC = () => {
   }, [alertMsgs]);
 
   return (
-    <div className="main-con" >
+    <div className="main-con">
       <h1 style={{ textAlign: "center" }}>
         <LinearGradient gradient={["to left", "#17acff ,#ff68f0"]}>
           To Do App
         </LinearGradient>
       </h1>
       <TodoInput />
-      {showAlert && <div className="alertmsg" >{currentAlertMsg}</div>}
+      {showAlert && <div className="alertmsg">{currentAlertMsg}</div>}
     </div>
   );
 };

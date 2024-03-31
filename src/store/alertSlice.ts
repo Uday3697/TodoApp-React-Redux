@@ -14,7 +14,7 @@ const alertSlice = createSlice({
     setAlert: (state, action: PayloadAction<AlertState>) => {
       state.push(action.payload);
     },
-    clearAlert: (state) => {
+    clearAlert: () => {
       return [];
     },
   },

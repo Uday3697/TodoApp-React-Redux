@@ -1,30 +1,42 @@
 # React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# React Todo App
 
-Currently, two official plugins are available:
+This is a simple Todo application built using React, TypeScript, and Vite. The application allows users to add, delete, toggle completion status, and edit tasks. It also includes a feature to show alerts for various actions such as adding, deleting, or editing tasks.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Getting Started
 
-## Expanding the ESLint configuration
+To run this project locally, follow these steps:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+1. Clone the repository:
 
-- Configure the top-level `parserOptions` property like this:
+   ```bash
+   git clone https://github.com/Uday3697/TodoApp-React-Redux.git
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+   ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+2. Navigate to the project directory:
+   cd react-todo-app
+
+3. Install dependencies:
+   npm install
+
+4. Run the development server:
+   npm run dev
+
+5. Open your browser and go to http://localhost:3000 or http://localhost:5173/ to view the application.
+
+☆ Features
+☆Add tasks: Users can add new tasks to the todo list.
+☆Delete tasks: Users can delete tasks from the todo list.
+☆Toggle completion status: Users can mark tasks as completed or incomplete.
+☆Edit tasks: Users can edit the text of existing tasks.
+☆Alerts: Show alerts for successful and failed actions such as adding, deleting, or editing tasks.
+
+🔯 Technologies Used
+⭐React: JavaScript library for building user interfaces.
+⭐TypeScript: Typed superset of JavaScript that compiles to plain JavaScript.
+⭐Vite: Next-generation frontend tooling for React development.
+
+☝️ Future Plans ☝️
+Currently, the application only has frontend functionality. Future plans include adding backend functionality using Express.js and MongoDB to persist tasks data, enabling users to access their todo lists from any device.
