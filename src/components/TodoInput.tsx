@@ -3,6 +3,7 @@ import { addTodo } from "../store/todoSlice";
 import { useAppDispatch } from "../store/types";
 import TodoList from "./TodoList"; // Import the TodoList component
 import "./TodoInput.css";
+import { setAlert } from "../store/alertSlice";
 const TodoInput: React.FC = () => {
   const [text, setText] = useState("");
   const [showTasks, setShowTasks] = useState(false); // State to toggle showing tasks
@@ -12,8 +13,12 @@ const TodoInput: React.FC = () => {
     e.preventDefault();
     if (text.trim() !== "") {
       dispatch(addTodo(text));
-      setText("");
+      dispatch(setAlert({ message: 'Task added successfully', type: 'success' }));
+      setText('');
+    } else {
+      dispatch(setAlert({ message: 'Please enter a valid task', type: 'error' }));
     }
+
   };
 
   return (

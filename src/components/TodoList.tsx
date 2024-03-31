@@ -18,6 +18,9 @@ const TodoList: React.FC<TodoListProps> = ({showTasks}) => {
 
   const handleDeleteTodo = (id: number) => {
     dispatch(deleteTodo(id));
+    setTimeout(() => {
+        alert("Task deleted successfully")
+    }, 200);
   };
 
   const handleEditClick = (id: number, text: string) => {
@@ -34,6 +37,9 @@ const TodoList: React.FC<TodoListProps> = ({showTasks}) => {
   const handleSaveEdit = (id: number) => {
     dispatch(editTodo({ id, text: editText }));
     setEditId(null); // Clear the edit state
+    setTimeout(() => {
+        alert("Task edited successfully")
+    }, 200);
   };
 
   return showTasks ? (

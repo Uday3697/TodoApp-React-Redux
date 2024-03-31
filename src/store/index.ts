@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import todoReducer from './todoSlice';
+import alertReducer from './alertSlice'; // Import alert reducer
 
 const store = configureStore({
   reducer: {
     todo: todoReducer,
+    alert: alertReducer, // Include alert reducer in the store
   },
 });
 
