@@ -14,10 +14,14 @@ const TodoInput: React.FC = () => {
     e.preventDefault();
     if (text.trim() !== "") {
       dispatch(addTodo(text));
-      dispatch(setAlert({ message: 'Task added successfully', type: 'success' }));
-      setText('');
+      dispatch(
+        setAlert({ message: "Task added successfully", type: "success" })
+      );
+      setText("");
     } else {
-      dispatch(setAlert({ message: 'Please enter a valid task', type: 'error' }));
+      dispatch(
+        setAlert({ message: "Please enter a valid task", type: "error" })
+      );
     }
   };
 
@@ -29,13 +33,7 @@ const TodoInput: React.FC = () => {
             value={text}
             onChange={(e) => setText(e.target.value)}
             placeholder="Add a new task..."
-            style={{
-              minHeight: 100,
-              width: "500px",
-              padding: 8,
-              borderRadius: 8,
-              border: 0,
-            }}
+            className="textInput"
           />
           <div style={{ display: "flex", gap: 20, marginTop: 30 }}>
             <button type="submit">Add Task</button>
@@ -46,7 +44,7 @@ const TodoInput: React.FC = () => {
 
       <div className="rightside">
         {/* Memoize the TodoList component */}
-          <TodoList showTasks={showTasks} />
+        <TodoList showTasks={showTasks} />
       </div>
     </div>
   );

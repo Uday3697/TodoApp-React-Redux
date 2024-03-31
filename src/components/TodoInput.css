@@ -1,8 +1,6 @@
 .home-con {
   display: flex;
   flex-direction: column;
-  min-width: 300px;
-  width: "80%";
   margin: auto;
   margin-left: auto;
 }
@@ -23,11 +21,22 @@
   min-width: 350px;
   width: 50vw;
 }
-
+.textInput {
+  min-height: 100px;
+  width: 500px;
+  padding: 8;
+  border-radius: 8;
+  border: 0;
+  align-self: center;
+  margin: auto;
+}
 @media (max-width: 768px) {
   .home-con {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+  }
+  .textInput {
+    width: 350px;
   }
 }

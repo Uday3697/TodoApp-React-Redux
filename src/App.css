@@ -8,12 +8,18 @@
   background: grey;
   text-align: center;
   align-self: center;
-  
 }
-.main-con{
+.main-con {
   align-items: center;
   justify-content: center;
   margin: auto;
   width: 90%;
   max-width: 500px;
+}
+
+@media screen and (max-width: 768px) {
+  .main-con {
+    width: 100%;
+    padding: 0 10px; /* Adjust padding as needed */
+  }
 }
