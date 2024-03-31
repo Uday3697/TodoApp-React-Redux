@@ -1,6 +1,6 @@
 .card-container {
   display: flex;
-  max-width: 100vw;
+  max-width: 500px;
   align-items: center;
   flex-direction: column;
   overflow-y: auto; /* Enable vertical scrolling */
@@ -11,9 +11,7 @@
 .card-container::-webkit-scrollbar {
   width: 0; /* Adjust scrollbar width to 0 to hide it on WebKit browsers (like Chrome and Safari) */
 }
-.card-container:hover{
-  transform: scale(1.01);
-}
+
 
 .todoCard {
   min-width: 200px;
@@ -24,11 +22,15 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
   margin: 10px;
-  max-width: 350px;
+  max-width: 400px;
   max-height: 250px;
   text-overflow: ellipsis;
 }
+.todoCard:hover{
+  transform: scale(1.05);
+  box-shadow: 2px 2px 4px lime;
 
+}
 .sub-con {
   height: 200px;
   border:1px solid grey;

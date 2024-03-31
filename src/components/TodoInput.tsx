@@ -4,6 +4,7 @@ import { useAppDispatch } from "../store/types";
 import TodoList from "./TodoList"; // Import the TodoList component
 import "./TodoInput.css";
 import { setAlert } from "../store/alertSlice";
+
 const TodoInput: React.FC = () => {
   const [text, setText] = useState("");
   const [showTasks, setShowTasks] = useState(false); // State to toggle showing tasks
@@ -18,7 +19,6 @@ const TodoInput: React.FC = () => {
     } else {
       dispatch(setAlert({ message: 'Please enter a valid task', type: 'error' }));
     }
-
   };
 
   return (
@@ -31,7 +31,7 @@ const TodoInput: React.FC = () => {
             placeholder="Add a new task..."
             style={{
               minHeight: 100,
-              width: "80%",
+              width: "500px",
               padding: 8,
               borderRadius: 8,
               border: 0,
@@ -45,7 +45,8 @@ const TodoInput: React.FC = () => {
       </div>
 
       <div className="rightside">
-        <TodoList showTasks={showTasks} />
+        {/* Memoize the TodoList component */}
+          <TodoList showTasks={showTasks} />
       </div>
     </div>
   );
