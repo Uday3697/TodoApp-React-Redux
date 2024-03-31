@@ -1,29 +1,62 @@
+.card-container {
+  display: flex;
+  max-width: 100vw;
+  align-items: center;
+  flex-direction: column;
+  overflow-y: auto; /* Enable vertical scrolling */
+  scrollbar-width: none; /* Hide the scrollbar on Firefox */
+  -ms-overflow-style: none; /* Hide the scrollbar on IE and Edge */
+}
+
+.card-container::-webkit-scrollbar {
+  width: 0; /* Adjust scrollbar width to 0 to hide it on WebKit browsers (like Chrome and Safari) */
+}
+.card-container:hover{
+  transform: scale(1.01);
+}
+
 .todoCard {
-    min-width: 250px;
-    min-height: 300px;
-    background-color: #424242;
-    border-radius: 20px;
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow for depth effect */
-    padding: 20px; /* Padding inside the card */
-    margin: 10px; /* Margin between cards */
+  min-width: 200px;
+  min-height: 200px;
+  background-color: #424242;
+  border-radius: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 10px;
+  max-width: 350px;
+  max-height: 250px;
+  text-overflow: ellipsis;
+}
+
+.sub-con {
+  height: 200px;
+  border:1px solid grey;
+  border-radius: 8px;
+  padding: 8px;
+  margin-bottom: 15px;
+}
+
+.todoCard h3 {
+  font-size: 1.5rem;
+  /* Title font size */
+  margin-bottom: 10px;
+  /* Bottom margin for spacing */
+}
+
+.todoCard p {
+  font-size: 1rem;
+  /* Content font size */
+  line-height: 1.5;
+  /* Line height for readability */
+}
+
+/* Responsive styling */
+@media screen and (max-width: 768px) {
+  .todoCard {
+    min-width: 90%;
+    /* Adjust minimum width for smaller screens */
+    min-height: auto;
+    /* Allow height to adjust based on content */
   }
-  
-  .todoCard h3 {
-    font-size: 1.5rem; /* Title font size */
-    margin-bottom: 10px; /* Bottom margin for spacing */
-  }
-  
-  .todoCard p {
-    font-size: 1rem; /* Content font size */
-    line-height: 1.5; /* Line height for readability */
-  }
-  
-  /* Responsive styling */
-  @media screen and (max-width: 768px) {
-    .todoCard {
-      min-width: 90%; /* Adjust minimum width for smaller screens */
-      min-height: auto; /* Allow height to adjust based on content */
-    }
-  }
-  
+}
