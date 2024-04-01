@@ -38,5 +38,9 @@ To run this project locally, follow these steps:
 ⭐TypeScript: Typed superset of JavaScript that compiles to plain JavaScript.
 ⭐Vite: Next-generation frontend tooling for React development.
 
-☝️ Future Plans ☝️
-Currently, the application only has frontend functionality. Future plans include adding backend functionality using Express.js and MongoDB to persist tasks data, enabling users to access their todo lists from any device.
+To run Backend Kindly use Mongo db connection string from your local or any database
+or u can make a .env file and paste this line with your connection string
+MONGODB_URI="mongodb+srv://M@cluster0.vpkmmtv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+
+⭐then run nodemon server.js to run backend
+⭐and npm start to run frontend
