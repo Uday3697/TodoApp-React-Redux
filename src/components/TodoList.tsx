@@ -1,9 +1,13 @@
 import React, { memo, useState, useEffect } from "react";
-import { deleteTodo, editTodo, toggleTodo } from "../store/todoSlice";
+import { deleteTodo, toggleTodo } from "../store/todoSlice";
 import { useAppDispatch } from "../store/types";
 import "./TodoList.css"; // Import the CSS file
 import { setAlert } from "../store/alertSlice";
-import { useDeleteTodoMutation, useGetTodosQuery, useUpdateTodoMutation } from "../apiCalls/todoApi";
+import {
+  useDeleteTodoMutation,
+  useGetTodosQuery,
+  useUpdateTodoMutation,
+} from "../apiCalls/todoApi";
 import { LinearGradient } from "react-text-gradients";
 
 interface TodoListProps {
@@ -12,19 +16,18 @@ interface TodoListProps {
 
 const TodoList: React.FC<TodoListProps> = ({ showTasks }) => {
   const dispatch = useAppDispatch();
-  const { data: todos,refetch } = useGetTodosQuery({});
+  const { data: todos, refetch } = useGetTodosQuery({});
   const [editId, setEditId] = useState<number | null>(null); // State to store the id of the todo being edited
   const [editText, setEditText] = useState<string>(""); // State to store the edited text
 
   const [deleteTodoMutation] = useDeleteTodoMutation();
 
-  const [updateTodoMutation]=useUpdateTodoMutation()
-
+  const [updateTodoMutation] = useUpdateTodoMutation();
 
   useEffect(() => {
     // Update local store state when todos data changes from the backend
     if (todos) {
-      dispatch({ type: 'todo/setTodos', payload: todos });
+      dispatch({ type: "todo/setTodos", payload: todos });
     }
   }, [todos, dispatch]);
 
@@ -40,10 +43,11 @@ const TodoList: React.FC<TodoListProps> = ({ showTasks }) => {
       // Call deleteTodoMutation to delete the todo from the backend
       await deleteTodoMutation(id);
 
-      dispatch(setAlert({ message: "Task deleted successfully", type: "success" }));
-        // Refetch todos after deletion
-        refetch();
-
+      dispatch(
+        setAlert({ message: "Task deleted successfully", type: "success" })
+      );
+      // Refetch todos after deletion
+      refetch();
     } catch (error) {
       console.error("Error deleting todo:", error);
       dispatch(setAlert({ message: "Error deleting task", type: "error" }));
@@ -63,7 +67,9 @@ const TodoList: React.FC<TodoListProps> = ({ showTasks }) => {
       // Call updateTodoMutation to update the todo in the backend
       await updateTodoMutation({ id, text: editText });
       setEditId(null); // Clear the edit state
-      dispatch(setAlert({ message: "Task edited successfully", type: "success" }));
+      dispatch(
+        setAlert({ message: "Task edited successfully", type: "success" })
+      );
     } catch (error) {
       console.error("Error editing todo:", error);
       dispatch(setAlert({ message: "Error editing task", type: "error" }));

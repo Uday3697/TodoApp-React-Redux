@@ -24,6 +24,25 @@ const Todo = mongoose.model('Todo', TodoSchema);
 app.use(express.json());
 app.use(cors());
 
+// Enhanced CORS configuration
+const allowedOrigins = ['http://localhost:5000', 'http://localhost:3000','http://localhost:5173']; // Update with your client's origin
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Add allowed HTTP methods
+    allowedHeaders: ['Content-Type', 'Authorization'], // Add allowed headers
+    optionsSuccessStatus: 200, // Some legacy browsers choke on 204
+  })
+);
+
+
+
 // Get all todos
 app.get('/todos', async (req, res) => {
   try {
