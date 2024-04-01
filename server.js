@@ -3,7 +3,9 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
+app.use(cors());
+
 
 // Connect to MongoDB database
 // kidly use your db link here  
@@ -22,24 +24,6 @@ const TodoSchema = new mongoose.Schema({
 const Todo = mongoose.model('Todo', TodoSchema);
 
 app.use(express.json());
-app.use(cors());
-
-// Enhanced CORS configuration
-const allowedOrigins = ['http://localhost:5000', 'http://localhost:3000','http://localhost:5173']; // Update with your client's origin
-app.use(
-  cors({
-    origin: function (origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
-    },
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Add allowed HTTP methods
-    allowedHeaders: ['Content-Type', 'Authorization'], // Add allowed headers
-    optionsSuccessStatus: 200, // Some legacy browsers choke on 204
-  })
-);
 
 
 
