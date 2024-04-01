@@ -2,12 +2,17 @@
   border-radius: 10px;
   padding: 5px;
   position: absolute;
-  bottom: 80px;
-  margin-left: auto;
-  margin-right: auto;
-  background: grey;
+  bottom: 50px;
+  /* margin-left: auto; */
+  /* margin-right: auto; */
+  background:#000;
   text-align: center;
   align-self: center;
+  width: 200px;
+  margin-left: 150px;
+  align-self: center !important;
+  color: goldenrod;
+
 }
 .main-con {
   align-items: center;

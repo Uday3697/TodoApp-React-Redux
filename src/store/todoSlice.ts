@@ -1,12 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface Todo {
-  id: number;
+  _id: string;
   text: string;
   completed: boolean;
 }
-
-let nextTodoId = 1;
 
 const initialState: Todo[] = [];
 
@@ -21,27 +19,27 @@ const todoSlice = createSlice({
       prepare(text: string) {
         return {
           payload: {
-            id: nextTodoId++,
             text,
             completed: false,
           },
         };
       },
     },
-    toggleTodo: (state, action: PayloadAction<number>) => {
-      const todo = state.find((todo) => todo.id === action.payload);
+    toggleTodo: (state, action: PayloadAction<string>) => {
+      const todo = state.find((todo) => todo._id === action.payload);
       if (todo) {
         todo.completed = !todo.completed;
       }
     },
-    editTodo: (state, action: PayloadAction<{ id: number; text: string }>) => {
-      const todo = state.find((todo) => todo.id === action.payload.id);
+    editTodo: (state, action: PayloadAction<{ _id: string; text: string }>) => {
+      const todo = state.find((todo) => todo._id === action.payload._id);
       if (todo) {
         todo.text = action.payload.text;
       }
     },
-    deleteTodo: (state, action: PayloadAction<number>) => {
-      return state.filter((todo) => todo.id !== action.payload);
+    deleteTodo: (state, action: PayloadAction<string>) => {
+      // Change the payload type to string for _id
+      return state.filter((todo) => todo._id !== action.payload);
     },
   },
 });

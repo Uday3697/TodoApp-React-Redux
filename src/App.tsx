@@ -24,7 +24,7 @@ const App: React.FC = () => {
     <div className="main-con">
       <h1 style={{ textAlign: "center" }}>
         <LinearGradient gradient={["to left", "#17acff ,#ff68f0"]}>
-          To Do App
+          Fullstack ToDo App
         </LinearGradient>
       </h1>
       <TodoInput />

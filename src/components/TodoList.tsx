@@ -12,7 +12,7 @@ interface TodoListProps {
 
 const TodoList: React.FC<TodoListProps> = ({ showTasks }) => {
   const dispatch = useAppDispatch();
-  const { data: todos } = useGetTodosQuery({});
+  const { data: todos,refetch } = useGetTodosQuery({});
   const [editId, setEditId] = useState<number | null>(null); // State to store the id of the todo being edited
   const [editText, setEditText] = useState<string>(""); // State to store the edited text
 
@@ -28,11 +28,11 @@ const TodoList: React.FC<TodoListProps> = ({ showTasks }) => {
     }
   }, [todos, dispatch]);
 
-  const handleToggleTodo = (id: number) => {
+  const handleToggleTodo = (id: string) => {
     dispatch(toggleTodo(id));
   };
 
-  const handleDeleteTodo = async (id: number) => {
+  const handleDeleteTodo = async (id: string) => {
     try {
       // Dispatch deleteTodo action to update local store state
       dispatch(deleteTodo(id));
@@ -41,6 +41,9 @@ const TodoList: React.FC<TodoListProps> = ({ showTasks }) => {
       await deleteTodoMutation(id);
 
       dispatch(setAlert({ message: "Task deleted successfully", type: "success" }));
+        // Refetch todos after deletion
+        refetch();
+
     } catch (error) {
       console.error("Error deleting todo:", error);
       dispatch(setAlert({ message: "Error deleting task", type: "error" }));
@@ -55,12 +58,16 @@ const TodoList: React.FC<TodoListProps> = ({ showTasks }) => {
     setEditText(e.target.value); // Update the edited text as the user types
   };
 
-  const handleSaveEdit = (id: number) => {
-    dispatch(editTodo({ id, text: editText }));
-    setEditId(null); // Clear the edit state
-    dispatch(
-      setAlert({ message: "Task edited successfully", type: "success" })
-    );
+  const handleSaveEdit = async (id: string) => {
+    try {
+      // Call updateTodoMutation to update the todo in the backend
+      await updateTodoMutation({ id, text: editText });
+      setEditId(null); // Clear the edit state
+      dispatch(setAlert({ message: "Task edited successfully", type: "success" }));
+    } catch (error) {
+      console.error("Error editing todo:", error);
+      dispatch(setAlert({ message: "Error editing task", type: "error" }));
+    }
   };
 
   return showTasks && todos ? (
@@ -90,14 +97,14 @@ const TodoList: React.FC<TodoListProps> = ({ showTasks }) => {
           <input
             type="checkbox"
             checked={todo.completed}
-            onChange={() => handleToggleTodo(todo.id)}
+            onChange={() => handleToggleTodo(todo._id)}
           />
           <LinearGradient gradient={["to left", "#18acff ,#ff88f9"]}>
             Mark as Complited
           </LinearGradient>
           <button
             style={{ marginLeft: 10 }}
-            onClick={() => handleDeleteTodo(todo.id)}
+            onClick={() => handleDeleteTodo(todo._id)}
           >
             {" "}
             <LinearGradient gradient={["to left", "#17acff ,#ff68f0"]}>
@@ -107,7 +114,7 @@ const TodoList: React.FC<TodoListProps> = ({ showTasks }) => {
 
           <button
             style={{ marginLeft: 10 }}
-            onClick={() => handleEditClick(todo.id, todo.text)}
+            onClick={() => handleEditClick(todo._id, todo.text)}
           >
             <LinearGradient gradient={["to left", "#17acff ,#ff68f0"]}>
               Edit

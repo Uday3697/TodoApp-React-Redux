@@ -29,7 +29,8 @@ const TodoInput: React.FC = () => {
         console.error("Error adding todo:", error);
         dispatch(setAlert({ message: "Error adding task", type: "error" }));
       }
-    } else {
+    }
+     else {
       dispatch(setAlert({ message: "Please enter a valid task", type: "error" }));
     }
   };
