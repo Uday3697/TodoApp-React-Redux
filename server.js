@@ -6,7 +6,8 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Connect to MongoDB database
-mongoose.connect('mongodb://localhost:27017/todoApp', {
+require('dotenv').config();
+mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
