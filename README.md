@@ -1,4 +1,5 @@
-# React + TypeScript + Vite
+Fullstack TODO APP
+using react Typescript,Nodejs ,Express js ,MongoDb
 
 # React Todo App
 
