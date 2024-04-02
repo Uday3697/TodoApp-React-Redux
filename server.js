@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const { error } = require('console');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -20,8 +21,19 @@ const TodoSchema = new mongoose.Schema({
   text: String,
   completed: Boolean,
 });
-
 const Todo = mongoose.model('Todo', TodoSchema);
+
+// user schema to submit form 
+const UserSchema = new mongoose.Schema({
+  name: String,
+  email: String,
+  phone: String,
+  city: String,
+});
+
+const User = mongoose.model('User', UserSchema);
+
+
 
 app.use(express.json());
 
@@ -78,6 +90,29 @@ app.delete('/todos/:id', async (req, res) => {
     res.status(404).json({ message: 'Todo not found' });
   }
 });
+
+// user form submit 
+app.post('/users', async (req, res) => {
+  const { name, email, phone, city } = req.body;
+  const newUser = new User({
+    name,
+    email,
+    phone,
+    city,
+  });
+  try {
+    const savedUser = await newUser.save();
+    res.status(201).json(savedUser)
+  }catch{
+    res.status(400).json({ message: error.message });
+
+  }
+})
+
+
+
+
+
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
